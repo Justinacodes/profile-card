@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testable Profile Card</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <article data-testid="test-profile-card" class="profile-card">
+        <div class="profile-container">
+            <aside class="profile-sidebar">
+                <figure class="avatar-container">
+                    <img data-testid="test-user-avatar" class="avatar" alt="Justina's avatar"
+                        src="./images/justina.jpeg" />
+                </figure>
+                <header class="user-header">
+                    <h2 data-testid="test-user-name" class="user-name">
+                        Justina
+                    </h2>
+                </header>
+                <nav aria-label="Social media links" class="social-nav">
+                    <ul data-testid="test-user-social-links" class="social-links">
+                        <li>
+                            <a href="https://github.com/Justinacodes" target="_blank" rel="noopener noreferrer"
+                                data-testid="test-user-github" class="social-link"
+                                aria-label="Justina's github profile">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="www.linkedin.com/in/justina-ominisan-1b5a72246" target="_blank"
+                                rel="noopener noreferrer" data-testid="test-user-social-linkedin" class="social-link"
+                                aria-label="Justina's linkedin profile">
+                                <i class="fab fa-linkedin"></i>
+
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="profile-main">
+                <section aria-labelledby="bio-heading">
+                    <h3 id="bio-heading" class="sr-only">Biography</h3>
+                    <p data-testid="test-user-bio" class="bio-text">
+                        Frontend Developer with a passion for creating accessible and
+                        user-friendly web experiences. I love exploring new technologies, meeting new people and making
+                        music.
+                    </p>
+                </section>
+
+                <div class="content-grid">
+                    <section aria-labelledby="hobbies-heading">
+                        <h3 id="hobbies-heading" class="section-heading">
+                            Hobbies
+                        </h3>
+                        <ul data-testid="test-user-hobbies" class="item-list">
+                            <li>
+                                Coding
+                            </li>
+                            <li>
+                                Traveling
+                            </li>
+                            <li>
+                                Reading
+                            </li>
+                            <li>
+                                Playing Guitar
+                            </li>
+                        </ul>
+                    </section>
+                    <section aria-labelledby="dislikes-heading">
+                        <h3 id="dislikes-heading" class="section-heading">
+                            Dislikes
+                        </h3>
+                        <ul data-testid="test-user-dislikes" class="item-list">
+                            <li>
+                                Lies
+                            </li>
+                            <li>
+                                Bad code
+                            </li>
+                            <li>
+                                Unproductivity
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+
+                <footer class="profile-footer">
+                    <p class="footer-text">
+                        Current Time:
+                        <time data-testid="test-user-time" class="time-display"></time>
+                    </p>
+                </footer>
+            </main>
+        </div>
+    </article>
+
+    <script>
+        const timeElement = document.querySelector('[data-testid="test-user-time"]');
+
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+
+            timeElement.textContent = `${hours}:${minutes}:${seconds}.${milliseconds}`;
+            timeElement.setAttribute('datetime', now.toISOString());
+        }
+
+        updateTime();
+        setInterval(updateTime, 10);
+    </script>
+
+</body>
+
+</html>
